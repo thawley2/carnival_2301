@@ -12,4 +12,18 @@ class Ride
     @excitement = ride_info[:excitement]
     @total_revenue = 0
   end
+
+  def match_preference(visitor)
+    visitor.preferences.include?(@excitement)
+  end
+
+  def meets_min_height(visitor)
+    visitor.tall_enough?(@min_height)
+  end
+
+  def board_rider(visitor)
+    if match_preference(visitor) && meets_min_height(visitor)
+      visitor.spending_money -= 1
+    end
+  end
 end
