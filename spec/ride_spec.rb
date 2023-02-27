@@ -63,7 +63,16 @@ RSpec.describe Ride do
       @ride1.board_rider(@visitor1)
 
       expect(@visitor1.spending_money).to eq(8)
+    end
 
+    it 'increases total revenue when boarding a rider' do
+      @ride1.board_rider(@visitor1)
+
+      expect(@ride1.total_revenue).to eq(1)
+
+      @ride1.board_rider(@visitor1)
+
+      expect(@ride1.total_revenue).to eq(2)
     end
   end
 end
