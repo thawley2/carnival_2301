@@ -23,7 +23,8 @@ class Ride
 
   def board_rider(visitor)
     if match_preference(visitor) && meets_min_height(visitor)
-      visitor.spending_money -= 1
+      visitor.spending_money -= @admission_fee
+      @total_revenue += @admission_fee
     end
   end
 end
