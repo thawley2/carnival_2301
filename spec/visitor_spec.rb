@@ -26,4 +26,16 @@ RSpec.describe Visitor do
       expect(@visitor1.preferences).to eq([])
     end
   end
+
+  describe '#add_preferences' do
+    it 'can add preferences' do
+      @visitor1.add_preferences(:gentle)
+
+      expect(@visitor1.preferences).to eq([:gentle])
+
+      @visitor1.add_preferences(:water)
+
+      expect(@visitor1.preferences).to eq([:gentle, :water])
+    end
+  end
 end
