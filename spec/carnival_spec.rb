@@ -10,6 +10,10 @@ RSpec.describe Carnival do
       expect(@carnival1).to be_a(Carnival)
     end
 
+    it 'has a number of days the carnival will be' do
+      expect(@carnival1.event_days).to eq(4)
+    end
+    
     it 'starts with an emtpy list of rides' do
       expect(@carnival1.rides).to eq([])
     end
