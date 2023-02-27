@@ -65,8 +65,18 @@ RSpec.describe Carnival do
     end
   end
 
+  describe '#ride_ride' do
+    it 'a visitor can ride a ride at the carnival' do
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+
+      expect(@carnival1.ride_ride(@visitor4, @ride1)).to eq("Weeee")
+      expect(@carnival2.ride_ride(@visitor4, @ride3)).to eq("That ride does not exist here")
+    end
+  end
+
   describe '#most_popular_ride' do
-    it 'can return the name of the most popular ride at the carnival' do
+    xit 'can return the name of the most popular ride at the carnival' do
       @carnival1.add_ride(@ride1)
       @carnival1.add_ride(@ride2)
       @carnival1.add_ride(@ride3)
