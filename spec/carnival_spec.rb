@@ -76,7 +76,7 @@ RSpec.describe Carnival do
   end
 
   describe '#most_popular_ride' do
-    xit 'can return the name of the most popular ride at the carnival' do
+    it 'can return the name of the most popular ride at the carnival' do
       @carnival1.add_ride(@ride1)
       @carnival1.add_ride(@ride2)
       @carnival1.add_ride(@ride3)
@@ -95,6 +95,28 @@ RSpec.describe Carnival do
       @carnival1.ride_ride(@visitor4, @ride3)
 
       expect(@carnival1.most_popular_ride).to eq('Carousel')
+    end
+
+    it 'can return the name of the most popular ride if it is a different ride' do
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+      @carnival1.add_ride(@ride3)
+
+      @carnival1.ride_ride(@visitor1, @ride1)
+      @carnival1.ride_ride(@visitor2, @ride1)
+      @carnival1.ride_ride(@visitor3, @ride1)
+      
+
+      @carnival1.ride_ride(@visitor1, @ride2)
+      @carnival1.ride_ride(@visitor3, @ride2)
+      @carnival1.ride_ride(@visitor4, @ride2)
+      @carnival1.ride_ride(@visitor4, @ride2)
+      
+      @carnival1.ride_ride(@visitor1, @ride3)
+      @carnival1.ride_ride(@visitor3, @ride3)
+      @carnival1.ride_ride(@visitor4, @ride3)
+
+      expect(@carnival1.most_popular_ride).to eq('Ferris Wheel')
     end
   end
 end
