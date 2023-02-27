@@ -56,21 +56,21 @@ RSpec.describe Ride do
     end
 
     it 'can decrease rider money when they board a ride' do
-      @ride1.board_rider(@visitor1)
+      @ride1.charge_visitor_fee(@visitor1)
 
       expect(@visitor1.spending_money).to eq(9)
 
-      @ride1.board_rider(@visitor1)
+      @ride1.charge_visitor_fee(@visitor1)
 
       expect(@visitor1.spending_money).to eq(8)
     end
 
     it 'increases total revenue when boarding a rider' do
-      @ride1.board_rider(@visitor1)
+      @ride1.charge_visitor_fee(@visitor1)
 
       expect(@ride1.total_revenue).to eq(1)
 
-      @ride1.board_rider(@visitor1)
+      @ride1.charge_visitor_fee(@visitor1)
 
       expect(@ride1.total_revenue).to eq(2)
     end
@@ -84,8 +84,19 @@ RSpec.describe Ride do
       expect(@ride1.rider_log).to eq({@visitor1 => 1, @visitor2 => 1})
 
       @ride1.board_rider(@visitor1)
-      
+
       expect(@ride1.rider_log).to eq({@visitor1 => 2, @visitor2 => 1})
+    end
+
+    it 'can perform all the actions when a rider boards a ride' do
+      @ride1.board_rider(@visitor1)
+      @ride1.board_rider(@visitor2)
+      @ride1.board_rider(@visitor2)
+
+      expect(@visitor1.spending_money).to eq(9)
+      expect(@visitor2.spending_money).to eq(3)
+
+      expect(@ride1.total_revenue).to eq(3)
     end
   end
 end
