@@ -13,9 +13,9 @@ RSpec.describe Ride do
       @visitor2 = Visitor.new('Tucker', 36, '$5')
       @visitor3 = Visitor.new('Thomas', 23, '$15')
 
-      @visitor1.add_preference(:gentle)
-      @visitor2.add_preference(:gentle)
-      @visitor3.add_preference(:extreme)
+      @visitor1.add_preferences(:gentle)
+      @visitor2.add_preferences(:gentle)
+      @visitor3.add_preferences(:extreme)
   end
 
   describe '#initialize' do
@@ -52,7 +52,7 @@ RSpec.describe Ride do
 
     it 'can check a rider if they meet the height requirement' do
       expect(@ride1.meets_min_height(@visitor1)).to be true
-      expect(@ride1.meets_min_height(@visitor2)).to be false
+      expect(@ride1.meets_min_height(@visitor3)).to be false
     end
 
     it 'can decrease rider money when they board a ride' do
@@ -62,7 +62,7 @@ RSpec.describe Ride do
 
       @ride1.board_rider(@visitor1)
 
-      expect(@visitor1.spending_money).to eq()
+      expect(@visitor1.spending_money).to eq(8)
 
     end
   end
