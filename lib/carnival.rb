@@ -29,7 +29,7 @@ class Carnival
 
   def total_revenue
     @rides.sum do |ride|
-      ride.rider_log.values.sum * ride.admission_fee
+      ride.total_revenue
     end
   end
 end
