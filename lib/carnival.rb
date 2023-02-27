@@ -20,7 +20,10 @@ class Carnival
     end
   end
 
-  # def most_popular_ride
-  #   @rides.map do |ride|
-  # end
+  def most_popular_ride
+    popular_ride = @rides.max_by do |ride|
+      ride.rider_log.values.sum
+    end
+    popular_ride.name
+  end
 end
