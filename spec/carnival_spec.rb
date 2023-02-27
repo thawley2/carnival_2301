@@ -66,12 +66,12 @@ RSpec.describe Carnival do
   end
 
   describe '#ride_ride' do
-    it 'a visitor can ride a ride at the carnival' do
+    it 'a visitor can ride a ride at the carnival if the ride has been added' do
       @carnival1.add_ride(@ride1)
       @carnival1.add_ride(@ride2)
 
       expect(@carnival1.ride_ride(@visitor4, @ride1)).to eq("Weeee")
-      expect(@carnival2.ride_ride(@visitor4, @ride3)).to eq("That ride does not exist here")
+      expect(@carnival1.ride_ride(@visitor4, @ride3)).to eq("That ride does not exist here")
     end
   end
 
@@ -81,18 +81,18 @@ RSpec.describe Carnival do
       @carnival1.add_ride(@ride2)
       @carnival1.add_ride(@ride3)
 
-      @ride1.board_rider(@visitor1)
-      @ride1.board_rider(@visitor2)
-      @ride1.board_rider(@visitor3)
-      @ride1.board_rider(@visitor4)
+      @carnival1.ride_ride(@visitor1, @ride1)
+      @carnival1.ride_ride(@visitor2, @ride1)
+      @carnival1.ride_ride(@visitor3, @ride1)
+      @carnival1.ride_ride(@visitor4, @ride1)
 
-      @ride2.board_rider(@visitor1)
-      @ride2.board_rider(@visitor3)
-      @ride2.board_rider(@visitor4)
-
-      @ride3.board_rider(@visitor1)
-      @ride3.board_rider(@visitor3)
-      @ride3.board_rider(@visitor4)
+      @carnival1.ride_ride(@visitor1, @ride2)
+      @carnival1.ride_ride(@visitor3, @ride2)
+      @carnival1.ride_ride(@visitor4, @ride2)
+      
+      @carnival1.ride_ride(@visitor1, @ride3)
+      @carnival1.ride_ride(@visitor3, @ride3)
+      @carnival1.ride_ride(@visitor4, @ride3)
 
       expect(@carnival1.most_popular_ride).to eq('Carousel')
     end
