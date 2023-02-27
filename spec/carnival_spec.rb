@@ -46,7 +46,7 @@ RSpec.describe Carnival do
       expect(@carnival1.name).to eq("The Greatest Show")
     end
 
-    it 'has a number of days the carnival will be' do
+    it 'has a number of days the carnival will be open' do
       expect(@carnival1.event_days).to eq(4)
     end
 
