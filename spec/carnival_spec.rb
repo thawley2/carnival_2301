@@ -141,4 +141,27 @@ RSpec.describe Carnival do
       expect(@carnival1.total_revenue).to eq(27)
     end
   end
+
+  describe '#most_profitable_ride' do
+    it 'can return the name of the ride that has made the most $$' do
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+      @carnival1.add_ride(@ride3)
+
+      @carnival1.ride_ride(@visitor1, @ride1)
+      @carnival1.ride_ride(@visitor2, @ride1)
+      @carnival1.ride_ride(@visitor3, @ride1)
+      
+      @carnival1.ride_ride(@visitor1, @ride2)
+      @carnival1.ride_ride(@visitor3, @ride2)
+      @carnival1.ride_ride(@visitor4, @ride2)
+      @carnival1.ride_ride(@visitor4, @ride2)
+      
+      @carnival1.ride_ride(@visitor1, @ride3)
+      @carnival1.ride_ride(@visitor3, @ride3)
+      @carnival1.ride_ride(@visitor4, @ride3)
+
+      expect(@carnival1.most_profitable_ride).to eq('Ferris Wheel')
+    end
+  end
 end
